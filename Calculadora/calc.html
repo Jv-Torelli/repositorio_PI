@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    Insira qual foi a área queimada: <br>
+    <input type="text" id="input_area">
+    <br><br>
+
+    Insira se o sensor está ou não ativado: <br>
+    <input type="text" id="input_status">
+    <br><br>
+
+    <div id="apresentar"></div>
+
+    <button onclick="calc()">Calcular prejuízo</button>
+
+</body>
+</html>
+
+<script>
+    function calc(){
+        var area = Number(input_area.value);
+        var statusSensor = input_status.value;
+
+        if(statusSensor == 'desativado'){
+            var valorPorMetro = 300;
+            var recuperacaoSolo = 125;
+            var danosEcon = 60;
+            var valorTotalArea = area * valorPorMetro;
+            var valorRecSolo = area * recuperacaoSolo;
+            var valorDanosEcon = area * danosEcon;
+            var custosPorDanos = valorDanosEcon + valorRecSolo + valorTotalArea;
+            apresentar.innerHTML = `O custo total dos danos sem o sensor é de ${custosPorDanos}`;
+        }
+        if(statusSensor == 'ativado'){
+            area = area * 0.2;
+            var valorPorMetro = 300;
+            var recuperacaoSolo = 125;
+            var danosEcon = 60;
+            var valorTotalArea = area * valorPorMetro;
+            var valorRecSolo = area * recuperacaoSolo;
+            var valorDanosEcon = area * danosEcon;
+            var custosPorDanos = valorDanosEcon + valorRecSolo + valorTotalArea;
+            apresentar.innerHTML = `O custo total dos danos com o sensor é de ${custosPorDanos}`;
+        }
+    }
+</script>
