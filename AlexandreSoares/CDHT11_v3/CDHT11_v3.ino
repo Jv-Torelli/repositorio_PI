@@ -17,17 +17,17 @@ void loop() { //Define um processo que será feito em repetição
   int MaxTemp = 50;
   int MinUmi = 40;
 
-  Serial.print("UmidMin:");
-    Serial.print(MinUmi);
-     Serial.print(",");
+      Serial.print("UmidMin:");
+      Serial.print(MinUmi);
+      Serial.print(",");
       Serial.print("Umid:");
-    Serial.print(umidade); //Preenche a string com o valor da variavel "umidade"
-     Serial.print(",");
-     Serial.print("Temp:");
-    Serial.print(temperatura);//Preenche a string com o valor da variavel "temperatura"
-    Serial.print(",");
-    Serial.print("TempMax:");
-    Serial.println(MaxTemp);
+      Serial.print(umidade); //Preenche a string com o valor da variavel "umidade"
+      Serial.print(",");
+      Serial.print("Temp:");
+      Serial.print(temperatura);//Preenche a string com o valor da variavel "temperatura"
+      Serial.print(",");
+      Serial.print("TempMax:");
+      Serial.println(MaxTemp);
 
   
 

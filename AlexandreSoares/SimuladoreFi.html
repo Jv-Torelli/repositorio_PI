@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhoenixEye</title>
+</head>
+
+<body>
+    <!-- style="display: flex; flex-direction: column; align-items: center; background-image: url(https://wallpapers.com/images/featured/4k-floresta-bsj6viu69x5leztf.jpg);" -->
+
+
+    <!-- <a style="margin-left: 20px; margin-right: 20px;" onclick="calc()" href="https://moodle.sptech.school/my/">
+            <p> <img style="height:45px"
+                    src="https://moodle.sptech.school/pluginfile.php/1/core_admin/logocompact/300x300/1741499220/logo-vazado-para-video.png"
+                    alt="Logo-SPTECH"></p>
+        </a> -->
+
+    <h1>
+        <!-- style="background-color: #BDF7B7; font-size:30px; opacity: 85%; width: 300px;align-items: center; display: flex; flex-direction: column;" -->
+        Simulador Financeiro
+    </h1>
+    <br>
+    <!-- <div style="background-color: #BDF7B7 ;display: flex;;flex-direction: column; align-items: center;width: 400px; opacity: 90%;"> -->
+    <div>
+        Insira a área total de vegetação: <input type="number" style="width: 100px; margin-top: 2px;" id="inpArea">m^2
+        <br>
+        Tempo médio para inicio do combate:<input type="number" value="18" style="width: 100px; margin-top: 2px"
+            id="inpTempoReacao">min <br>
+        Tempo médio para extinção do incêndio: <input type="number" id="inpExt" value="180">min <br>
+        (Os valores pré-definidos foram calculados a partir de uma média com os dados encontrados.)
+
+
+
+        <br><br>
+        <button onclick="calc()" style="margin: 10px; cursor: pointer;">Fazer uma simulação</button>
+
+    </div>
+    <br><br>
+    <div id="divMensagem"><!-- style="background-color: #BDF7B7;" -->Lorem ipsum dolor sit amet, consectetur adipisicing
+        elit.
+        Corporis, impedit odio? Sequi nostrum a doloribus ut nam accusantium eaque error optio velit ducimus tenetur
+        accusamus consequatur ipsa, alias atque eos!</div>
+</body>
+
+</html>
+<script>
+
+    function calc() {
+        var area = Number(inpArea.value);
+        var tempoReacao = Number(inpTempoReacao.value);
+        var formatTemp = tempoReacao.toFixed(0);
+
+        var tempoExt = Number(inpExt.value);
+
+        var rapido = tempoReacao * 0.5;
+        var litragemAgua = area * 3.43;
+        var custoLitro = litragemAgua * 0.00484;
+        var formatCusto = custoLitro.toFixed(2);
+
+        var bombeiro = 0.001 * area;
+
+        var tempoTotal = (tempoReacao + tempoExt) / 60;
+
+        var salarioBombeiro = (67 * tempoTotal) *  bombeiro;
+
+
+        var formatSalario = salarioBombeiro.toFixed(2);
+        
+        var custoTotal = salarioBombeiro+custoLitro;
+        var formatTotal = custoTotal.toFixed(2) 
+
+
+            divMensagem.innerHTML = `Sua área de ${area}m seria destruida em ${formatTemp} minutos. O tempo de reação seria reduzido em 50%. Caso demorassem ${tempoReacao}min para chegar, esse tempo seria reduzido para ${rapido} min. <br><br> Para apagar um incêndio em uma área de ${area}m seriam necessários ${litragemAgua} litros, que resultaria em um custo aproximado de R${formatCusto} apenas com água. <br><br> Para uma área de aproximadamente mil metros seria necessário 1 bombeiro. Com a sua área, seriam necessários aproximadamente ${bombeiro} bombeiros para lidar com o incêndio. <br><br>O salário de um bombeiro é aproximadamente R$67,00.<br>Logo, o custo com os bombeiros necessários(em salário apenas dos bombeiros) seria de R$${formatSalario} <br>
+            Seu custo <b style='color:red'>MÍNIMO</b> para lidar com o incêndio seria de aproximadamente R$${formatTotal}.`
+
+    }
+
+    //     alert(`Estamos te redirecionando para o Moodle! 
+    //     Aguarde...`)
+</script>
