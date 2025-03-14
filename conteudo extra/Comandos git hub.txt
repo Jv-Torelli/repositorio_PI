@@ -1,0 +1,15 @@
+Comandos git hub: 
+
+
+git clone http://linkdoprojeto = serve para clonar o repositório no seu computador
+
+
+para subir atualizações em códigos, ou subir novos arquivos dentro do repositório:
+
+git add . 
+
+git commit -m "Comentário do commit"
+
+git push  // responsável por puxar todas as suas atualizações para o git hub
+
+git pull // para atualizar todas as ações que o repositório sofreu alterações para o seu computador
