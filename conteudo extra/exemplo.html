@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela em HTML</title>
+    <style>
+        /* Aqui é onde é definido alguns aspectos, a exemplo de bordas largura padding e etc na tb */
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h2>Exemplo de Tabela</h2>
+    <table>
+        <thead>
+            <!-- <tr></tr> = linha && <td></td> = coluna-->
+            <!-- Inicio de uma tupla da tabela -->
+            <tr> 
+                <!-- Valores atribuidos em cada coluna -->
+                <th>água</th>
+                <th>bombeiros</th>
+                <th>avião</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>0.85 por litro</td>
+                <td>4.200 por funcionário</td>
+                <td>7.060 por avião</td>
+            </tr>
+            <tr>
+                <td>Bruno</td>
+                <td>30</td>
+                <td>Rio de Janeiro</td>
+            </tr>
+            <tr>
+                <td>Carla</td>
+                <td>22</td>
+                <td>Belo Horizonte</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
