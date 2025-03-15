@@ -33,33 +33,33 @@
         var sensor = Number (input_sensor.value);
         var valorPorMetro = area * 100;
         var sensor = sensor * 150;
-        var valorSensorPorArea = valorPorMetro * sensor;
+        var ValorSensorPorArea = valorPorMetro + sensor;
 
         if(area <= 3000){ // caso a área seja menos ou igual a 3000 metros 
             var valorTotalArea = valorPorMetro;
-            var ValorSensorPorArea = valorPorMetro * sensor;
+            var ValorSensorPorArea = valorPorMetro + sensor;
             
-            div_mensagem.innerHTML = `O custo total por área dos sensores é de ${ValorSensorPorArea}`;
+            div_mensagem.innerHTML = `O custo total por área dos sensores é de R$${ValorSensorPorArea}`;
         }
         else if(area <= 9000){ // caso a área seja menos ou igual a 9000 metros
             var valorTotalArea = valorPorMetro;
-            var ValorSensorPorArea = valorPorMetro * sensor;
+            var ValorSensorPorArea = valorPorMetro + sensor;
             
-            div_mensagem.innerHTML = `O custo total por área dos sensores é de ${ValorSensorPorArea}`;
+            div_mensagem.innerHTML = `O custo total por área dos sensores é de R$${ValorSensorPorArea}`;
         }
         else if(area <= 15000){ // caso a área seja menos ou igual a 1500 metros
             var valorTotalArea = valorPorMetro;
-            var ValorSensorPorArea = valorPorMetro * sensor;
+            var ValorSensorPorArea = valorPorMetro + sensor;
             
-            div_mensagem.innerHTML = `O custo total por área dos sensores é de ${ValorSensorPorArea}`;
+            div_mensagem.innerHTML = `O custo total por área dos sensores é de R$${ValorSensorPorArea}`;
         }
         else if(area <= 30000){ // caso a área seja menos ou igual a 30000 metros
 // Para descobrirmos o valor utilizado por área = area * valorPorMetro
         
             var valorTotalArea = valorPorMetro;
-            var ValorSensorPorArea = valorPorMetro * sensor;
+            var ValorSensorPorArea = valorPorMetro + sensor;
             
-            div_mensagem.innerHTML = `O custo total por área dos sensores é de ${ValorSensorPorArea}`;
+            div_mensagem.innerHTML = `O custo total por área dos sensores é de R$${ValorSensorPorArea}`;
         }
         
     }
