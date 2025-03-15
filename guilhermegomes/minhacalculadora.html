@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2> Calculadora Empresarial </h2><br>
+
+    Informar a metragem da área protegida: <br>
+    <input type="number" id="input_area">
+    <br><br>
+
+    Informar a quantidade de sensores que serão utilizados: <br>
+    <input type="number" id="input_sensor">
+    <br><br>
+
+    <div id="div_mensagem"></div>
+
+    <button onclick="calcular()"> Calcular quantidade de sensores por área </button>
+
+</body>
+</html>
+
+<script>
+    // a quantidade de sensores utilizados e a área que será utilizada será informada nos inputs acima
+    // O Metro da área custará R$200
+    // O valor do sensor custará R$150
+    // Para saber o valor dos sensores por área = sensor * valorTotal da área
+    function calcular(){
+        var area = Number(input_area.value);
+        var sensor = Number (input_sensor.value);
+        var valorPorMetro = area * 100;
+        var sensor = sensor * 150;
+        var valorSensorPorArea = valorPorMetro * sensor;
+
+        if(area <= 3000){ // caso a área seja menos ou igual a 3000 metros 
+            var valorTotalArea = valorPorMetro;
+            var ValorSensorPorArea = valorPorMetro * sensor;
+            
+            div_mensagem.innerHTML = `O custo total por área dos sensores é de ${ValorSensorPorArea}`;
+        }
+        else if(area <= 9000){ // caso a área seja menos ou igual a 9000 metros
+            var valorTotalArea = valorPorMetro;
+            var ValorSensorPorArea = valorPorMetro * sensor;
+            
+            div_mensagem.innerHTML = `O custo total por área dos sensores é de ${ValorSensorPorArea}`;
+        }
+        else if(area <= 15000){ // caso a área seja menos ou igual a 1500 metros
+            var valorTotalArea = valorPorMetro;
+            var ValorSensorPorArea = valorPorMetro * sensor;
+            
+            div_mensagem.innerHTML = `O custo total por área dos sensores é de ${ValorSensorPorArea}`;
+        }
+        else if(area <= 30000){ // caso a área seja menos ou igual a 30000 metros
+// Para descobrirmos o valor utilizado por área = area * valorPorMetro
+        
+            var valorTotalArea = valorPorMetro;
+            var ValorSensorPorArea = valorPorMetro * sensor;
+            
+            div_mensagem.innerHTML = `O custo total por área dos sensores é de ${ValorSensorPorArea}`;
+        }
+        
+    }
+</script>
