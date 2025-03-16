@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro</title>
+</head>
+<body>
+    <br>
+    <h2><b>Simulador Financeiro</b></h2>
+    <br><br><br>
+    
+    Insira qual a metragem da área protegida: <br>
+    <input type="text" id="input_area">
+    <br><br>
+
+    Insira quantos metros de distância terá cada sensor: <br>
+    <input type="text" id="input_QtdSensor">
+    <br><br>
+
+    Insira o tempo de início de combate (em minutos): <br>
+    <input type="text" id="input_TempoAtual">
+    <br><br>
+
+    Insira o tempo de início de combate ao incêndio com a solução (em minutos): <br>
+    <input type="text" id="input_TempoSolução">
+    <br><br>
+
+    Tempo para a extinção do incêndio em minutos: <br>
+    <input type="text" id="input_Combate">
+    <br><br>
+
+    Velocidade de expansão do fogo: <br>
+    <input type="text" id="input_VeloExpan" value="1.25">
+    <br><br>
+
+    Água gasta por metro quadrado em litros: <br>
+    <input type="text" id="input_GastoCAgua" value="3.43">
+    <br><br>
+
+    Preço do litro de água gasto: <br>
+    <input type="text" id="input_ValorAgua" value="0.00484">
+    <br><br>
+
+    Salário médio dos bombeiros por hora: <br>
+    <input type="text" id="input_MediaSalario" value="67.00">
+    <br><br>
+
+    Contará com o uso de um avião: (sim) <br>
+    <input type="text" id="input_UsoAviao">
+    <br><br>
+
+    Custos equipamentos por hora: <br>
+    <input type="text" id="input_GastosComEquipamentos" value="14047.62">
+    <br><br>
+
+    <button onclick="calc()">Calcular valores</button>
+
+    <div id="apresentar"></div>
+
+</body>
+</html>
+
+<script>
+    function calc(){
+        var area = Number(input_area.value)
+        var numSensor = Number(input_QtdSensor.value)
+        var tempoAteCombate = Number(input_TempoAtual.value)
+        var tempoAteCombateCSolucao = Number(input_TempoSolução.value)
+        var tempoCombateMinutos = Number(input_Combate.value)
+        var velocidadePropagacao = Number(input_VeloExpan.value)
+        var litroPorMetro = Number(input_GastoCAgua.value)
+        var valorLitroAgua = Number(input_ValorAgua.value)
+        var salarioBombeiroHora = Number(input_MediaSalario.value)
+        var usoAviao = input_UsoAviao.value.toLowerCase()
+        var custoEquipamentos = Number(input_GastosComEquipamentos.value)
+
+        var tempoAteCombateHrs = tempoAteCombate / 60
+        var tempoAteCombateCSolucaoHrs = tempoAteCombateCSolucao / 60
+        var tempoCombateHrs = tempoCombateMinutos / 60
+
+        var tempoCombateSemSol = tempoAteCombateHrs + tempoCombateHrs
+        var tempoCombateComSolucao = tempoAteCombateCSolucaoHrs + tempoCombateHrs
+
+        var areaAtingida = ((tempoCombateSemSol * 60) * 60) * velocidadePropagacao;
+        var areaAtingidaCsolucao = ((tempoCombateComSolucao * 60) * 60) * velocidadePropagacao;
+
+
+        var quantidadeDeSensores = areaAtingida / numSensor
+        var quantidadeDeSensoresComSolucao = areaAtingidaCsolucao / numSensor
+
+        var quantidadeBombeiros = 0.001 * areaAtingida
+
+        var litrosGastos = areaAtingida * litroPorMetro
+        var litrosGastosComSolucao = areaAtingidaCsolucao * litroPorMetro
+
+        var valorGastoComAgua = litrosGastos * valorLitroAgua
+        var valorGastoComAguaSolucao = litrosGastosComSolucao * valorLitroAgua
+
+        var salarioSemSol = quantidadeBombeiros * (salarioBombeiroHora * tempoCombateSemSol)
+        var salarioComSolucao = quantidadeBombeiros * (tempoCombateComSolucao * salarioBombeiroHora)
+
+        var custoEquiSemSolucao = custoEquipamentos * tempoCombateSemSol
+        var custoEquiComSolucao = custoEquipamentos * tempoCombateComSolucao
+
+        if(usoAviao === 'sim'){
+            var valorTotalGastoSemSolucao = valorGastoComAgua + salarioSemSol + custoEquiSemSolucao
+            var valorTotalGastoComSolucao = valorGastoComAguaSolucao + salarioComSolucao + custoEquiComSolucao
+            var valorDiferenca = valorTotalGastoSemSolucao - valorTotalGastoComSolucao
+
+            apresentar.innerHTML = `O incêndio na área de ${area}, atingiu cerca de ${areaAtingida.toFixed(2)} metros quadrados, com 
+            ${quantidadeDeSensores.toFixed(2)} sensores. O tempo até o combate foi de ${tempoAteCombate} minutos e 
+            o tempo de combate ${tempoCombateHrs.toFixed(2)} horas. A ação levou ${tempoCombateSemSol.toFixed(2)} horas, 
+            contou com ${quantidadeBombeiros.toFixed(2)} bombeiros, e teve um custo da equipe de R$${salarioSemSol.toFixed(2)}. 
+            Foram gastos ${litrosGastos.toFixed(2)} litros de água, custando R$${valorGastoComAgua.toFixed(2)}. 
+            O custo com equipamentos foi de R$${custoEquiSemSolucao.toFixed(2)}, resultando em um gasto total de R$${valorTotalGastoSemSolucao.toFixed(2)}.<br><br>
+            
+            Com a solução, os custos foram reduzidos. A área atingida foi de ${areaAtingidaCsolucao.toFixed(2)} metros quadrados, 
+            com ${quantidadeDeSensoresComSolucao.toFixed(2)} sensores. O tempo total foi de ${tempoCombateComSolucao.toFixed(2)} horas, 
+            e os bombeiros custaram R$${salarioComSolucao.toFixed(2)}. O consumo de água foi de ${litrosGastosComSolucao.toFixed(2)} litros, 
+            custando R$${valorGastoComAguaSolucao.toFixed(2)}. O custo com equipamentos foi de R$${custoEquiComSolucao.toFixed(2)}, 
+            totalizando um gasto de R$${valorTotalGastoComSolucao.toFixed(2)}.<br><br>
+            
+            <b>Economia total: R$${valorDiferenca.toFixed(2)}</b>`;
+        } else {
+            apresentar.innerHTML = `Por favor, digite "sim" no campo de uso do avião para realizar o cálculo corretamente.`;
+        }
+    }
+</script>
