@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhoenixEye</title>
+</head>
+
+<body>
+ <h1>
+      
+        Simulador Financeiro
+    </h1>
+    <br>
+   
+    <div>
+        Insira a área total de vegetação: <input type="number" style="width: 100px; margin-top: 2px;" id="inpArea">m^2
+        <br>
+        Tempo médio para inicio do combate:<input type="number" value="18" style="width: 100px; margin-top: 2px"
+            id="inpTempoReacao">min <br>
+        Tempo médio para extinção do incêndio: <input type="number" id="inpExt" value="180">min <br>
+        (Os valores pré-definidos foram calculados a partir de uma média com os dados encontrados.)
+
+
+
+        <br><br>
+        <button onclick="calc()" style="margin: 10px; cursor: pointer;">Fazer uma simulação</button>
+
+    </div>
+    <br><br>
+    <div id="divMensagem">Lorem ipsum dolor sit amet, consectetur adipisicing
+        elit.
+        Corporis, impedit odio? Sequi nostrum a doloribus ut nam accusantium eaque error optio velit ducimus tenetur
+        accusamus consequatur ipsa, alias atque eos!</div>
+</body>
+
+</html>
+<script>
+
+    function calc() {
+        var area = Number(inpArea.value);
+        var tempoReacao = Number(inpTempoReacao.value);
+        var formatTemp = tempoReacao.toFixed(0);
+
+        var tempoExt = Number(inpExt.value);
+
+        var rapido = tempoReacao * 0.5;
+        var litragemAgua = area * 3.43;
+        var custoLitro = litragemAgua * 0.00484;
+        var formatCusto = custoLitro.toFixed(2);
+
+        var bombeiro = 0.001 * area;
+
+        var tempoTotal = (tempoReacao + tempoExt) / 60;
+
+        var salarioBombeiro = (16.5 * tempoTotal) * bombeiro;
+
+
+        var formatSalario = salarioBombeiro.toFixed(2);
+
+        var custoTotal = salarioBombeiro + custoLitro;
+        var formatTotal = custoTotal.toFixed(2)
+
+
+        divMensagem.innerHTML = `Sua área de ${area}m seria destruida em ${formatTemp} minutos. O tempo de reação seria reduzido em 50%. Caso demorassem ${tempoReacao}min para chegar, esse tempo seria reduzido para ${rapido} min. <br><br> 
+            Para apagar um incêndio em uma área de ${area}m seriam necessários ${litragemAgua} litros, que resultaria em um custo aproximado de R$ ${formatCusto} apenas com água. <br><br>
+            Para uma área de aproximadamente mil metros seria necessário 1 bombeiro. Com a sua área, seriam necessários aproximadamente ${bombeiro} bombeiros para lidar com o incêndio. <br><br>
+            O salário de um bombeiro é aproximadamente R$ 16,50(hora).<br>Logo, o custo com os bombeiros necessários(em salário apenas dos bombeiros) seria de R$ ${formatSalario}. <br>
+            Seu custo <b style='color:red'>MÍNIMO</b> para lidar com o incêndio seria de aproximadamente R$ ${formatTotal}.`
+
+    }
+
+  
+</script>
