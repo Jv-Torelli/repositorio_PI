@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h3> Qual a metragem do terreno</h3>
+   <input type="text" id="input_metro">
+
+   <h3> Quantidade de metros entre 2 sensores </h3> 
+   <input type="text" id ="input_sensor"><br>
+
+   <h3> Quantidade de tempo para identificar um incendio sem solução</h3> 
+   <input type="text" id="input_temposem"><br>
+
+   <h3> Quantidade de tempo para identificar um incendio com solução</h3> 
+   <input type="text" id="input_tempocom"><br>
+
+
+
+   <button onclick="verificar ()">Verificar </button>
+    <div id="div_mensage"></div>
+
+</body>
+</html>
+
+<script>
+
+function verificar () {
+
+var metro = Number(input_metro.value)
+var sensor = Number(input_sensor.value)
+var temposem = Number(input_temposem.value)
+var tempocom= Number(input_tempocom.value)
+var qtdsensor = metro / sensor 
+var precosensor = 15
+var valors = qtdsensor * precosensor
+var tempoatual = temposem - tempocom
+
+
+div_mensage.innerHTML = `Com uma metragem do terreno em ${metro} consistirá em um total de ${qtdsensor} sensores no terreno local. <br>
+Assim o tempo de ideintificação de incendio sem a solução e com a solução terá uma diferença de ${tempoatual} minutos. <br>
+O valor que será gasto em sensores total é de $${valors}  cada sensor está custando $${precosensor} .
+`
+
+}
+
+</script>
