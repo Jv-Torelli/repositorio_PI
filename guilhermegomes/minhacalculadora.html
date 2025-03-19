@@ -16,51 +16,51 @@
     <input type="number" id="input_sensor">
     <br><br>
 
-    <div id="div_mensagem"></div>
+    Informar a quantidade de bombeiros do combate ao incêndio: <br>
+    <input type="number" id="input_bomb">
+    <br><br>
 
-    <button onclick="calcular()"> Calcular quantidade de sensores por área </button>
+    Informar o tempo utilizado para parar a queimada: <br>
+    <input type="number" id="input_temp">
+    <br><br>
 
+    Informar o salário dos bombeiros por hora: <br>
+    <input type="number" id="input_sal">
+    <br><br>
+
+    Informar quantos litros de agua serao utilizados: <br>
+    <input type="number" id="input_agua">
+    <br><br>
+
+    Informar o preço da agua que serao utilizados: <br>
+    <input type="number" id="input_preco">
+    <br><br>
+
+    <button onclick="calcular()"> Calcular custo total</button>
+<div id="div_mensagem"></div>
 </body>
 </html>
 
 <script>
     // a quantidade de sensores utilizados e a área que será utilizada será informada nos inputs acima
-    // O Metro da área custará R$200
-    // O valor do sensor custará R$150
+    // O valor do sensor custará R$15
     // Para saber o valor dos sensores por área = sensor * valorTotal da área
     function calcular(){
         var area = Number(input_area.value);
-        var sensor = Number (input_sensor.value);
-        var valorPorMetro = area * 100;
-        var sensor = sensor * 150;
-        var ValorSensorPorArea = valorPorMetro + sensor;
-
-        if(area <= 3000){ // caso a área seja menos ou igual a 3000 metros 
-            var valorTotalArea = valorPorMetro;
-            var ValorSensorPorArea = valorPorMetro + sensor;
+        var qtdSensor = Number (input_sensor.value);
+        var qtdBombeiros = Number (input_bomb.value);
+        var salário = Number (input_sal.value);
+        var litros = Number (input_agua.value);
+        var preçoA = Number (input_preco.value);
+        var tempo = Number (input_temp.value);
+        var preço = 15;
+        var custoSensor = qtdSensor * preço;
+        var custoBOMB = qtdBombeiros * salário * tempo;
+        var custoAgua = litros * preçoA;
+        var total = custoSensor + custoBOMB + custoAgua;
             
-            div_mensagem.innerHTML = `O custo total por área dos sensores é de R$${ValorSensorPorArea}`;
-        }
-        else if(area <= 9000){ // caso a área seja menos ou igual a 9000 metros
-            var valorTotalArea = valorPorMetro;
-            var ValorSensorPorArea = valorPorMetro + sensor;
-            
-            div_mensagem.innerHTML = `O custo total por área dos sensores é de R$${ValorSensorPorArea}`;
-        }
-        else if(area <= 15000){ // caso a área seja menos ou igual a 1500 metros
-            var valorTotalArea = valorPorMetro;
-            var ValorSensorPorArea = valorPorMetro + sensor;
-            
-            div_mensagem.innerHTML = `O custo total por área dos sensores é de R$${ValorSensorPorArea}`;
-        }
-        else if(area <= 30000){ // caso a área seja menos ou igual a 30000 metros
-// Para descobrirmos o valor utilizado por área = area * valorPorMetro
+            div_mensagem.innerHTML = `O custo total por área dos sensores é de R$${custoSensor}. O custo com os bombeiros será de R$${custoBOMB} e o custo da água de R$${custoAgua}. Sabendo disso, R$${total} será gasto com as áreas queimadas`;
         
-            var valorTotalArea = valorPorMetro;
-            var ValorSensorPorArea = valorPorMetro + sensor;
-            
-            div_mensagem.innerHTML = `O custo total por área dos sensores é de R$${ValorSensorPorArea}`;
-        }
         
     }
 </script>
