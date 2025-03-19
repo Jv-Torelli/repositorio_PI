@@ -8,18 +8,24 @@
 </head>
 
 <body>
- <h1>
-      
+    <h1>
+
         Simulador Financeiro
     </h1>
     <br>
-   
+
     <div>
-        Insira a área total de vegetação: <input type="number" style="width: 100px; margin-top: 2px;" id="inpArea">m^2
+        Insira a área total de vegetação: <input type="number" style="width: 100px; margin-top: 2px;" id="inpArea">m²
         <br>
         Tempo médio para inicio do combate:<input type="number" value="18" style="width: 100px; margin-top: 2px"
             id="inpTempoReacao">min <br>
         Tempo médio para extinção do incêndio: <input type="number" id="inpExt" value="180">min <br>
+        Será necessário o uso de aviões?<br>
+        Selecione:<select id="selectAviao">
+
+            <option value="Sim">Sim</option>
+            <option value="Não">Não</option>
+        </select> <br>
         (Os valores pré-definidos foram calculados a partir de uma média com os dados encontrados.)
 
 
@@ -59,17 +65,33 @@
 
         var formatSalario = salarioBombeiro.toFixed(2);
 
-        var custoTotal = salarioBombeiro + custoLitro;
+        var custoExtra = 0
+
+        var slcAviao = selectAviao.value;
+
+        var custoTotal = salarioBombeiro + custoLitro + custoExtra;
         var formatTotal = custoTotal.toFixed(2)
 
 
-        divMensagem.innerHTML = `Sua área de ${area}m seria destruida em ${formatTemp} minutos. O tempo de reação seria reduzido em 50%. Caso demorassem ${tempoReacao}min para chegar, esse tempo seria reduzido para ${rapido} min. <br><br> 
+
+        if (slcAviao == 'Sim') {
+            custoExtra = 14047.62 * tempoTotal;
+            divMensagem.innerHTML = `Sua área de ${area}m² seria destruida em ${formatTemp} minutos. O tempo de reação seria reduzido em 50%. Caso demorassem ${tempoReacao}min para chegar, esse tempo seria reduzido para ${rapido} min. <br><br> 
             Para apagar um incêndio em uma área de ${area}m seriam necessários ${litragemAgua} litros, que resultaria em um custo aproximado de R$ ${formatCusto} apenas com água. <br><br>
             Para uma área de aproximadamente mil metros seria necessário 1 bombeiro. Com a sua área, seriam necessários aproximadamente ${bombeiro} bombeiros para lidar com o incêndio. <br><br>
-            O salário de um bombeiro é aproximadamente R$ 16,50(hora).<br>Logo, o custo com os bombeiros necessários(em salário apenas dos bombeiros) seria de R$ ${formatSalario}. <br>
-            Seu custo <b style='color:red'>MÍNIMO</b> para lidar com o incêndio seria de aproximadamente R$ ${formatTotal}.`
+            O salário de um bombeiro é aproximadamente R$ 16,50(hora).<br>Logo, o custo com os bombeiros necessários(em salário apenas dos bombeiros referente ao tempo necessário para lidar com o incêndio) seria de R$ ${formatSalario}. <br>
+             Com a utilização de aviões para lidar com o incêndio, terá um custo de R$ ${custoExtra}.<br>
+          <br>  Seu custo <b style='color:red'>MÍNIMO</b> para lidar com o incêndio seria de aproximadamente R$ ${formatTotal}.`
+        }
+        else {
 
+            divMensagem.innerHTML = `Sua área de ${area}m² seria destruida em ${formatTemp} minutos. O tempo de reação seria reduzido em 50%. Caso demorassem ${tempoReacao}min para chegar, esse tempo seria reduzido para ${rapido} min. <br><br> 
+            Para apagar um incêndio em uma área de ${area}m seriam necessários ${litragemAgua} litros, que resultaria em um custo aproximado de R$ ${formatCusto} apenas com água. <br><br>
+            Para uma área de aproximadamente mil metros seria necessário 1 bombeiro. Com a sua área, seriam necessários aproximadamente ${bombeiro} bombeiros para lidar com o incêndio. <br><br>
+            O salário de um bombeiro é aproximadamente R$ 16,50(hora).<br>Logo, o custo com os bombeiros necessários(em salário apenas dos bombeiros referente ao tempo necessário para lidar com o incêndio) seria de R$ ${formatSalario}. <br>
+            Seu custo <b style='color:red'>MÍNIMO</b> para lidar com o incêndio seria de aproximadamente R$ ${formatTotal}.`
+        }
     }
 
-  
+
 </script>
