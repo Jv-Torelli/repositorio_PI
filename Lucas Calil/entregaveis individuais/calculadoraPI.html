@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+</head>
+<body>
+    <h2>Calculadora Financeira - Monitoramento Ambiental</h2>
+    <br><br>
+
+    <h3>Área total de proteção (m² por sensor):</h3>
+    <input type="number" id="input_areaPorSensor">
+    <br><br>
+
+    <h3>Tempo de combate ao incêdio sem solução (minutos):</h3>
+    <input type="number" id="input_tempoSemSolucao">
+    <br><br>
+
+    <h3>Tempo de combate ao incêdio com solução (minutos):</h3>
+    <input type="number" id="input_tempoComSolucao">
+    <br><br>
+
+    <h3>Quantidade de sensores:</h3>
+    <input type="number" id="input_numSensores">
+    <br><br>
+
+    <h3>Preço de cada sensor (R$):</h3>
+    <input type="number" id="input_precoSensor">
+    <br><br>
+
+    <h3>Velocidade que fogo se espalha (metros por segundo):</h3>
+    <input type="number" id="input_velocidadeFogo">
+    <br><br>
+
+    <h3>Custo da equipe de bombeiros (R$):</h3>
+    <input type="number" id="input_custoBombeiros">
+    <br><br>
+
+    <h3>Quantidade de água utilizada (litros):</h3>
+    <input type="number" id="input_quantidadeAgua">
+    <br><br>
+
+    <h3>Custo do equipamento (R$):</h3>
+    <input type="number" id="input_custoEquipamento">
+    <br><br>
+
+    <h3>Porcentagem da área queimada sem a solução(%):</h3>
+    <input type="number" id="input_porcentagem">
+    <br><br>
+
+    <button onclick="calcular()">Calcular</button>
+    <br><br>
+
+    <div id="div_mensagem"></div>
+
+</body>
+</html>
+
+<script>
+    function calcular() {
+        
+        var areaPorSensor = Number(input_areaPorSensor.value);
+        var tempoSemSolucao = Number(input_tempoSemSolucao.value);
+        var tempoComSolucao = Number(input_tempoComSolucao.value);
+        var numSensores = Number(input_numSensores.value);
+        var precoSensor = Number(input_precoSensor.value);
+        var velocidadeFogo = Number(input_velocidadeFogo.value);
+        var custoBombeiros = Number(input_custoBombeiros.value);
+        var quantidadeAgua = Number(input_quantidadeAgua.value); 
+        var custoEquipamento = Number(input_custoEquipamento.value);
+        var porcentagemSemSolucao = Number(input_porcentagem.value);
+        var precoPorLitroAgua = 0.74;
+
+        
+        var areaTotal = areaPorSensor * numSensores;
+
+        
+        var areaQueimadaSemSolucao = (porcentagemSemSolucao / 100) * areaTotal;
+
+        
+        var custoAgua = quantidadeAgua * precoPorLitroAgua;
+
+        
+        var tempoReduzido = tempoSemSolucao - tempoComSolucao;
+        var porcentagemReducao = (tempoReduzido / tempoSemSolucao);
+        var reducaoQueimada = areaQueimadaSemSolucao * porcentagemReducao;
+
+        
+        var areaQueimadaComSolucao = areaQueimadaSemSolucao - reducaoQueimada;
+
+        // a area queimada não pode ser negativa
+        if (areaQueimadaComSolucao < 0) {
+            areaQueimadaComSolucao = 0;
+        }
+
+        
+        var porcentagemComSolucao = (areaQueimadaComSolucao / areaTotal) * 100;
+
+        
+        var custoSensores = numSensores * precoSensor;
+
+
+        var custoBombeirosComSolucao = (tempoComSolucao / tempoSemSolucao) * custoBombeiros;
+
+        
+        var custoAguaComSolucao = (areaQueimadaComSolucao / areaQueimadaSemSolucao) * custoAgua;
+
+        
+        var custoTotalComSolucao = custoBombeirosComSolucao + custoAguaComSolucao + custoEquipamento + custoSensores;
+
+        
+        div_mensagem.innerHTML = `
+            <b>Sem a Solução: </b><br><br>
+            Tempo de combate: ${tempoSemSolucao} minutos;<br>
+            Custo total: R$ ${custoBombeiros + custoAgua + custoEquipamento + custoSensores};<br>
+            Área queimada: ${areaQueimadaSemSolucao.toFixed(2)} m² (${porcentagemSemSolucao}%.)<br><br><br>
+            
+            <b>Com a Solução: </b><br><br>
+            Tempo de combate: ${tempoComSolucao} minutos; <br>
+            Custo total: R$ ${custoTotalComSolucao.toFixed(2)};<br>
+            Área queimada: ${areaQueimadaComSolucao.toFixed(2)} m² (${porcentagemComSolucao.toFixed(2)}%.)
+        `;
+    }
+
+
+</script>
