@@ -10,7 +10,8 @@ email varchar(100) unique,
 senha varchar(100) unique,
 Orgão varchar(100),
 Cpf char(11) unique,
-Nivel_de_acesso int constraint chkNivel check (nivel_de_acesso in(0, 1, 2)),
+Nivel_de_acesso int,
+constraint chkNivel check (nivel_de_acesso in(0, 1, 2)),
 dtCadastro datetime default current_timestamp
 );
 insert into usuário values 
@@ -33,7 +34,8 @@ create table sensor(
 idSensor int primary key auto_increment,
 nomeSensor varchar(30),
 gridLocal varchar(30),
-Stats varchar(50) constraint chkstats 
+Stats varchar(50),
+constraint chkstats 
 	check (stats in('Ativo','Inativo','Pendente manutenção')),
 dtInstalacao date,
 numSerial char(15) unique,
