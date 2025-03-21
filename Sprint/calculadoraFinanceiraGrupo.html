@@ -154,7 +154,7 @@
 
         //Resultados na tela
         h3_resultado.innerHTML = `Resultado da Simulação`;
-        p_resultado.innerHTML = `Com base nas definições e premissas informadas, serão necessários <b style="color: red;">${qtdSensores.toFixed(0)} sensores</b>, gerando um custo de <b style="color: red;">R$${custoTotalSensores.toFixed(2)}</b>. <br><br> Considerando a metragem total a ser protegida, sem a solução, uma área de <b style="color: red;">${areaTotalAtingidaAtual.toFixed(0)}m²</b> seria destruída pelo incêndio, acarretando custos diretos de <b style="color: red;">R$${custoTotalAtual.toFixed(2)}</b>. <br><br> Neste valor são considerados o custo com equipes <b style="color: red;">(R$${custoEquipesAtual.toFixed(2)})</b>, custo com água <b style="color: red;">(R$${custoAguaAtual.toFixed(2)})</b> e o custo com equipamentos <b style="color: red;">(R$${custoEquipamentosAtual.toFixed(2)})</b>. <br><br>
+        p_resultado.innerHTML = `Com base nas definições e premissas informadas, serão necessários <b style="color: red;">${qtdSensores.toFixed(0)} sensores</b>, gerando um custo de <b style="color: red;">R$${custoTotalSensores.toFixed(2)}</b>. <br><br> Para chegarmos a este valor, consideramos o perímetro da área informada e dividimos pela quantidade de metros entre os sensores e pelo preço, que foram informados acima. <br><br> Considerando a metragem total a ser protegida, sem a solução, uma área de <b style="color: red;">${areaTotalAtingidaAtual.toFixed(0)}m²</b> seria destruída pelo incêndio, acarretando custos diretos de <b style="color: red;">R$${custoTotalAtual.toFixed(2)}</b>. <br><br> Neste valor são considerados o custo com equipes <b style="color: red;">(R$${custoEquipesAtual.toFixed(2)})</b>, custo com água <b style="color: red;">(R$${custoAguaAtual.toFixed(2)})</b> e o custo com equipamentos <b style="color: red;">(R$${custoEquipamentosAtual.toFixed(2)})</b>. <br><br>
         Ao usar nossa solução e reduzir o tempo de mobilização e início ao combate de <b style="color: green;">${tempoReacaoAtual.toFixed(0)}</b> minutos para <b style="color: green;">${tempoReacaoSolucao.toFixed(0)}</b> minutos, a área destruída seria reduzida para <b style="color: green;">${areaTotalAtingidaSolucao.toFixed(0)}m²</b>, e os custos diretos cairíam para <b style="color: green;">R$${custoTotalSolucao.toFixed(2)}</b>, uma redução de <b style="color: green;">R$${difCustoTotal.toFixed(2)}</b>, ou  <b style="color: green;">${porcentDifCustoTotal.toFixed(2)}%.</b> <br><br> Com a solução, o custo com equipes <b style="color: green;">(R$${custoEquipesSolucao.toFixed(2)})</b>, custo com água <b style="color: green;">(R$${custoAguaSolucao.toFixed(2)})</b> e o custo com equipamentos <b style="color: green;">(R$${custoEquipamentosSolucao.toFixed(2)})</b> são reduzidos. <br><br>
         
         <h2>Tabela de valores</h2>
@@ -188,7 +188,7 @@
             <!-- Inicio de uma tupla da tabela -->
             <tr> 
                 <!-- Valores atribuidos em cada coluna -->
-                <th>Métricas</th>
+                <th>Tipo de custo</th>
                 <th>Atual</th>
                 <th>Solução</th>
                 <th id="diferenca">Diferença</th>
@@ -196,7 +196,7 @@
         </thead>
         <tbody>
             <tr>
-                <td>Custo Equipe</td>
+                <td>Equipe</td>
                 <td>R$${custoEquipesAtual.toFixed(2)}</td>
                 <td>R$${custoEquipesSolucao.toFixed(2)}</td>
                 <td>R$${custoEquipesDif.toFixed(2)}</td>
@@ -218,7 +218,7 @@
             </tr>
 
             <tr>
-                <td>total</td>
+                <td>Total</td>
                 <td>R$${custoTotalAtual.toFixed(2)}</td>
                 <td>R$${custoTotalSolucao.toFixed(2)}</td>
                 <td>R$${difCustoTotal.toFixed(2)}</td>
